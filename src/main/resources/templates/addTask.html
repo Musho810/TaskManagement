@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<!-- START: Head-->
+<head>
+    <meta charset="UTF-8">
+    <title>Pick Admin</title>
+    <link rel="shortcut icon" href="/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <th:block th:insert="fragments/fragment::headerImport"></th:block>
+    <link rel="stylesheet" href="/vendors/quill/quill.snow.css">
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+<body id="main-container" class="default">
+
+<!-- START: Pre Loader-->
+<div class="se-pre-con">
+    <div class="loader"></div>
+</div>
+<!-- END: Pre Loader-->
+
+<th:block th:insert="/fragments/fragment::header"></th:block>
+
+<th:block th:insert="/fragments/fragment::sidebar"></th:block>
+
+
+<!-- START: Main Content-->
+<main>
+    <div class="container-fluid site-width">
+        <!-- START: Breadcrumbs-->
+        <div class="row">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Dashboard</h4>
+                        <p>Welcome to liner admin panel</p></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item"><a href="index.html#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Add New Task</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form action="/tasks/add" method="post" id="taskForm">
+                                        <div class="form-group row">
+                                            <label for="title" class="col-sm-2 col-form-label">Title</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="title" class="form-control" id="title"
+                                                       placeholder="Title">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span>Description:</span>
+                                            <div id="snow-container" class="height-350"></div>
+                                            <textarea name="description" style="display:none" id="hiddenArea"></textarea>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="deadline" class="col-sm-2 col-form-label">Deadline</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" name="deadline" class="form-control" id="deadline"
+                                                       placeholder="deadline">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="status" class="col-sm-2 col-form-label">Status</label>
+                                            <div class="col-sm-10">
+                                                <select class="custom-select" name="status" id="status">
+                                                    <option value="TODO">TODO</option>
+                                                    <option value="IN_PROGRESS">IN PROGRESS</option>
+                                                    <option value="TESTING">TESTING</option>
+                                                    <option value="DONE">DONE</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="status" class="col-sm-2 col-form-label">User</label>
+                                            <div class="col-sm-10">
+                                                <select class="custom-select" name="user.id">
+                                                    <option value="0">unassigned</option>
+                                                    <option th:each="user: ${users}"
+                                                            th:text="${user.name + ' ' + user.surname}"
+                                                            th:value="${user.id}"></option>
+                                                </select>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <button type="submit" class="btn btn-primary">Add</button>
+                                                        <button type="reset" class="btn btn-outline-warning">Reset
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- END: Content-->
+<th:block th:insert="/fragments/fragment::footer"></th:block>
+
+
+<!-- START: Back to top-->
+<a href="index.html#" class="scrollup text-center">
+    <i class="icon-arrow-up"></i>
+</a>
+<!-- END: Back to top-->
+
+<th:block th:insert="/fragments/fragment::footerImport"></th:block>
+<script src="/vendors/quill/quill.min.js"></script>
+<script src="/js/mail.script.js"></script>
+<script>
+    $("#taskForm").on("submit",function() {
+        $("#hiddenArea").val($(".ql-editor").html());
+    })
+</script>
+</body>
+<!-- END: Body-->
+</html>

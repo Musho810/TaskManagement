@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<!-- START: Head-->
+<head>
+    <meta charset="UTF-8">
+    <title>Pick Admin</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <th:block th:insert="fragments/fragment::headerImport" ></th:block>
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+<body id="main-container" class="default">
+
+<!-- START: Pre Loader-->
+<div class="se-pre-con">
+    <div class="loader"></div>
+</div>
+<!-- END: Pre Loader-->
+
+<th:block th:insert="/fragments/fragment::header"></th:block>
+
+<th:block th:insert="/fragments/fragment::sidebar"></th:block>
+
+
+<!-- START: Main Content-->
+<main>
+    <div class="container-fluid site-width">
+        <!-- START: Breadcrumbs-->
+        <div class="row">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Dashboard</h4> <p>Welcome to liner admin panel</p></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item"><a href="index.html#">Home</a></li>
+                        <li class="breadcrumb-item active">Please login</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+
+
+    </div>
+</main>
+<!-- END: Content-->
+
+<th:block th:insert="/fragments/fragment::footer"></th:block>
+
+
+
+<!-- START: Back to top-->
+<a href="index.html#" class="scrollup text-center">
+    <i class="icon-arrow-up"></i>
+</a>
+<!-- END: Back to top-->
+
+<th:block th:insert="/fragments/fragment::footerImport"></th:block>
+
+</body>
+<!-- END: Body-->
+</html>

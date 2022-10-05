@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<!-- START: Head-->
+<head>
+    <meta charset="UTF-8">
+    <title>Add user page</title>
+    <link rel="shortcut icon" href="/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <th:block th:insert="fragments/fragment::headerImport"></th:block>
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+<body id="main-container" class="default">
+
+<!-- START: Pre Loader-->
+<div class="se-pre-con">
+    <div class="loader"></div>
+</div>
+<!-- END: Pre Loader-->
+
+<th:block th:insert="/fragments/fragment::header"></th:block>
+
+<th:block th:insert="/fragments/fragment::sidebar"></th:block>
+
+
+<!-- START: Main Content-->
+<main>
+    <div class="container-fluid site-width">
+        <!-- START: Breadcrumbs-->
+        <div class="row">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Dashboard</h4>
+                        <p>Welcome to liner admin panel</p></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item"><a href="index.html#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Add New User</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form action="/users/add" method="post" enctype="multipart/form-data">
+                                        <div class="form-group row">
+                                            <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="name" class="form-control" id="name"
+                                                       placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="surname" class="col-sm-2 col-form-label">Surname</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="surname" class="form-control" id="surname"
+                                                       placeholder="surname">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" name="email" class="form-control" id="email"
+                                                       placeholder="Email"><br th:if="${errorMessageEmail != null}" >
+                                                <span style="color: red" th:if="${errorMessageEmail != null}" th:text="${errorMessageEmail}"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" name="password" class="form-control" id="password"
+                                                       placeholder="password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="role" class="col-sm-2 col-form-label">Role</label>
+                                            <div class="col-sm-10">
+                                                <select class="custom-select" name="role" id="role">
+                                                    <option value="MANAGER">MANAGER</option>
+                                                    <option value="USER">USER</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="userImage" class="col-sm-2 col-form-label">User Image</label>
+                                            <input type="file" name="userImage" id="userImage" accept="image/*">
+                                            <br th:if="${errorMessageFile != null}" >
+                                            <span style="color: red" th:if="${errorMessageFile != null}" th:text="${errorMessageFile}"></span>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- END: Content-->
+<th:block th:insert="/fragments/fragment::footer"></th:block>
+
+
+<!-- START: Back to top-->
+<a href="index.html#" class="scrollup text-center">
+    <i class="icon-arrow-up"></i>
+</a>
+<!-- END: Back to top-->
+
+<th:block th:insert="/fragments/fragment::footerImport"></th:block>
+
+</body>
+<!-- END: Body-->
+</html>

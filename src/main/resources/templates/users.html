@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<!-- START: Head-->
+<head>
+    <meta charset="UTF-8">
+    <title>Pick Admin</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <th:block th:insert="fragments/fragment::headerImport" ></th:block>
+
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+<body id="main-container" class="default">
+
+<!-- START: Pre Loader-->
+<div class="se-pre-con">
+    <div class="loader"></div>
+</div>
+<!-- END: Pre Loader-->
+
+<th:block th:insert="/fragments/fragment::header"></th:block>
+
+
+<th:block th:insert="/fragments/fragment::sidebar"></th:block>
+
+<!-- START: Main Content-->
+<main>
+    <div class="container-fluid site-width">
+        <!-- START: Breadcrumbs-->
+        <div class="row">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Dashboard</h4> <p>Welcome to liner admin panel</p></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item"><a href="index.html#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-eq-height">
+            <div class="col-12">
+                <div class="card border h-100 contact-list-section">
+                    <div class="card-header border-bottom p-1 d-flex">
+                        <a href="app-contactlist.html#" class="d-inline-block d-lg-none flip-menu-toggle"><i class="icon-menu"></i></a>
+                        <input type="text" class="form-control border-0 p-2 w-100 h-100 contact-search" placeholder="Search ...">
+                        <a href="app-contactlist.html#" class="list-style search-bar-menu border-0 active"><i class="icon-list"></i></a>
+                        <a href="app-contactlist.html#" class="grid-style search-bar-menu"><i class="icon-grid"></i></a>
+                    </div>
+                    <div class="card-body p-0">
+
+                        <div class="contacts list">
+                            <div th:each="user: ${users}" class="contact family-contact">
+                                <div class="contact-content">
+                                    <div class="contact-profile">
+
+                                        <img th:if="${user.picUrl != null}" th:src="@{/users/getImage(fileName=${user.picUrl})}"  class="user-image img-fluid">
+                                        <img th:if="${user.picUrl == null}" src="/images/contact-1.jpg" alt="avatar" class="user-image img-fluid">
+                                        <div class="contact-info">
+                                            <p class="contact-name mb-0" th:text="${user.name + ' ' + user.surname}">Kayla Fail</p>
+                                            <p class="contact-position mb-0 small font-weight-bold text-muted" th:text="${user.getRole().name()}">Chief Executive Officer</p>
+                                        </div>
+                                    </div>
+                                    <div class="contact-email">
+                                        <p class="mb-0 small">Email: </p>
+                                        <p class="user-email" th:text="${user.getEmail()}">kf@mail.com</p>
+                                    </div>
+                                    <!--                                    <div class="contact-location">-->
+                                    <!--                                        <p class="mb-0 small">Location: </p>-->
+                                    <!--                                        <p class="user-location">Washington</p>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="contact-phone">-->
+                                    <!--                                        <p class="mb-0 small">Phone: </p>-->
+                                    <!--                                        <p class="user-phone">+1 (020) 123-4567</p>-->
+                                    <!--                                    </div>-->
+                                    <div class="line-h-1 h5">
+                                        <a class="text-success edit-contact" href="#" data-toggle="modal" data-target="#edittask"><i class="icon-pencil"></i></a>
+                                        <a class="text-danger delete-contact" th:href="@{/users/delete(id=${user.id})}"><i class="icon-trash"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+    </div>
+</main>
+<!-- END: Content-->
+<!-- START: Footer-->
+<footer class="site-footer">
+    2022 &copy; PICK
+</footer>
+<!-- END: Footer-->
+
+
+<!-- START: Back to top-->
+<a href="index.html#" class="scrollup text-center">
+    <i class="icon-arrow-up"></i>
+</a>
+<!-- END: Back to top-->
+
+<th:block th:insert="/fragments/fragment::footerImport"></th:block>
+
+</body>
+<!-- END: Body-->
+</html>
